@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="everyWeekFlow" doc:id="a6f53cae-be4c-4a50-b897-8d6e54e6df0b" >
+		<scheduler doc:name="everyDayOfWeek" doc:id="08132d41-012d-4ceb-8f84-cc147e70d3ff" >
+			<scheduling-strategy >
+				<cron expression="0 0 0 ? * MON"/>
+			</scheduling-strategy>
+		</scheduler>
+		<flow-ref doc:name="mainFlow" doc:id="5a45c5a9-0747-455a-8140-f158a86ec01a" name="mainFlow"/>
+	</flow>
+	<flow name="lastDayOfMonthFlow" doc:id="f6e1b8f1-940f-42e2-97b7-93336182044d" >
+		<scheduler doc:name="lastDayOfMonth" doc:id="97b1f677-0837-409b-94bc-2bf1e82db55a" >
+			<scheduling-strategy >
+				<cron expression="0 0 0 L * ?" />
+			</scheduling-strategy>
+		</scheduler>
+		<flow-ref doc:name="mainFlow" doc:id="e2405dc1-0913-4783-b099-acb47a0fcb14" name="mainFlow"/>
+	</flow>
+	<flow name="mainFlow" doc:id="72367910-8af9-436d-a14b-7dd863de861d" >
+		<logger level="INFO" doc:name="Logger" doc:id="074da7e0-5a13-4823-9df3-096c2ff82a5d" />
+	</flow>
+</mule>
